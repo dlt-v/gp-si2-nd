@@ -1,26 +1,22 @@
 /*
-Stwórz program, który będzie sprawdzał czy podany wyraz to Palindrom.
-Palindrom jest to wyraz który brzmi tak samo od początku do końca, jak i od końca do początku.
-Ala - alA
-Jeżeli jest palindromem poinformuj użytkownika za pomocą napisu w konsoli.
+Jeżeli mamy więcej niż 75 pkt ogólnie to dostaliśmy się na studia.
+Natomiast jeżeli mamy mniej, to musimy powtarzać maturę za rok.
 */
 
-let tekstA = 'paweł';
-let tekstB = 'racecar';
-let tekstC = 'paweł';
-let odwrotTesktA = tekstA;
+/*
+Zadanie domowe
+Do każdego elementu tablicy robimy operację:
+Jeżeli liczba w tablicy jest parzysta, mnożymy ją przez 2.
+Jeżli liczba w tablicy jest nieparzysta, mnożymy ją przez 0.5
+Tablica będzie posiadała 5 elementów liczbowych.
+[2, 3, 1, 2, 6] 
+2 % 2 == 0 -> 2 to liczba parzysta
+[ 4, 1.5, 0.5, 4, 12 ]
 
+*/
 
-odwrotTesktA = [...odwrotTesktA]; //rozbijamy go na tablice literek
+let a = 5;
+let b = 4;
 
-odwrotTesktA.reverse(); //odwraca tablice
-
-odwrotTesktA = odwrotTesktA.join(''); //łączy tablice w tekst
-
-console.log(tekstA, odwrotTesktA);
-
-if (tekstA === odwrotTesktA) {
-    console.log(`${tekstA} jest palindromem.`);
-} else {
-    console.log(`${tekstA} nie jest palindromem.`);
-}
+if (a == b) console.log(a);
+else console.log(b);
