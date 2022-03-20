@@ -64,10 +64,10 @@ let kubekRomka = {
     },
 };
 
-console.log(kubekRomka.zawartosc);
-// Jak użyć metody:
-kubekRomka.wypij();
-console.log(kubekRomka.zawartosc);
+// console.log(kubekRomka.zawartosc);
+// // Jak użyć metody:
+// kubekRomka.wypij();
+// console.log(kubekRomka.zawartosc);
 
 /*
 DRY - Don't Repeat Yourself - Nie Powtarzaj Sie
@@ -75,4 +75,17 @@ KISS - Keep It Simple, Stupid - Nie komplikuj sobie kodu, głupku
 */
 
 /*
-Zadanko
+Zadanie
+Utwórz obiekt blokMateusza oraz blokPiotra, daj mu 2 właściwości i jedną metodę.
+*/
+const osobaTomek = {
+    imie: 'Tomek',
+    waga: 190,
+    wzrost: 180,
+    podajBMI: function () {
+        // BMI = waga (kg) / wzrost^2 (m)
+        let bmi = this.waga / ((this.wzrost / 100) ^ 2);
+        return bmi;
+    },
+};
+console.log(osobaTomek.podajBMI());
