@@ -81,6 +81,21 @@ Znaki budujące kolor 0123456789abcdef w sumie 16
 5. Zwróć gotowy kolor z funkcji
 */
 
+function losowyKolor() {
+    let napis = '0123456789abcdef';
+    let tablica = [...napis];
+
+    let kolor = '#';
+
+    for (let i = 0; i < 6; i++) {
+        kolor += tablica[Math.floor(Math.random() * 16)];
+    }
+    return kolor;
+}
+
+wynik = losowyKolor();
+console.log(wynik);
+
 /*
 Praca domowa
 Stwórz obiekt nowyUzytkownik.
