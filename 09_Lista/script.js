@@ -4,9 +4,15 @@ const listaZadan = document.querySelector('#listaZadan');
 const trescZadania = document.querySelector('#element');
 
 przyciskDodaj.addEventListener('click', dodajElement);
+trescZadania.addEventListener('keypress', dodajElement);
 listaZadan.addEventListener('click', usunElement);
 
-function dodajElement() {
+function dodajElement(event) {
+    console.log(event);
+    if (event.key !== 'Enter' || event.pointerType != 'mouse') {
+        return;
+    }
+    '0' == 0;
     let tekstZadania = trescZadania.value.trim();
 
     if (tekstZadania.length == 0) {
@@ -21,6 +27,6 @@ function dodajElement() {
     console.log(tekstZadania);
 }
 
-function usunElement(){
-    
+function usunElement(event) {
+    listaZadan.removeChild(event.target);
 }
