@@ -8,8 +8,7 @@ trescZadania.addEventListener('keypress', dodajElement);
 listaZadan.addEventListener('click', usunElement);
 
 function dodajElement(event) {
-    console.log(event);
-    if (event.key !== 'Enter' || event.pointerType != 'mouse') {
+    if (!(event.key == 'Enter' || event.pointerType == 'mouse')) {
         return;
     }
     '0' == 0;
