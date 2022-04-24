@@ -14,7 +14,7 @@ img {
 }
 
 #kontener {
-    width: 1000px;
+    min-width: 750px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -25,15 +25,18 @@ input {
     width: 50px;
     height: 50px;
     font-size: 35px;
+    box-sizing: border-box;
+    transform: translateY(4px);
+    text-align: center;
 }
 
 button {
-    width: 200px;
+    width: 120px;
     height: 50px;
     background-color: #fa4a0a;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 4px;
     transition-duration: 0.4s;
     border: 2px solid #fa4a0a;
