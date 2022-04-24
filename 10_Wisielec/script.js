@@ -25,9 +25,16 @@ przyciskOk.addEventListener('click', graj);
 
 let uzyteLitery = [];
 let zgadnieteLitery = [];
+let mozliweLitery = [];
 const wyraz = listaWyrazow[Math.floor(Math.random() * listaWyrazow.length)];
 
 function main() {
+    for (let i = 0; i < wyraz.length; i++) {
+        if (!mozliweLitery.includes(wyraz[i])) {
+            mozliweLitery.push(wyraz[i]);
+        }
+    }
+    console.log(mozliweLitery);
     let wyrazDoDruku = [];
     let czyTrafiony = false;
     let liczbaSzans = listaObrazkow.length;
@@ -60,7 +67,14 @@ function graj() {
             wyrazDoDruku[i] = '_';
         }
     }
+    if (zgadnieteLitery.length == mozliweLitery.length) {
+        komunikat.innerHTML = 'Wygrałeś!';
+    }
     miejsceNaTekst.innerHTML = wyrazDoDruku.join(' ');
+    /*
+    Zadanie:
+    Dodaj warunek kiedy wszystkie litery zostały odkryte i poinformuj użytkownika.
+    */
 }
 
 main();
