@@ -32,11 +32,14 @@ let zycia = listaObrazkow.length;
 let wyraz = listaWyrazow[Math.floor(Math.random() * listaWyrazow.length)];
 
 function main() {
+    policzMozliweLitery();
+
     wydrukuj();
 }
 
 function graj() {
     const nowaLitera = input.value.toLowerCase();
+    input.value = '';
     if (uzyteLitery.includes(nowaLitera)) {
         komunikat.innerHTML = 'Już użyłeś tej litery.';
         return;
@@ -71,6 +74,7 @@ function graj() {
 
     if (zgadnieteLitery.length == mozliweLitery.length) {
         komunikat.innerHTML = 'Wygrałeś!';
+        przyciskOk.style.display = 'none';
     }
 }
 
@@ -79,8 +83,13 @@ function zresetuj() {
     obrazek.style.display = 'none';
     uzyteLitery = [];
     zgadnieteLitery = [];
-    mozliweLitery = [];
+    policzMozliweLitery();
     zycia = listaObrazkow.length;
+
+    przyciskOk.style.display = 'inline';
+    komunikat.innerHTML = 'Nowa gra.';
+
+    wydrukuj();
 }
 function wydrukuj() {
     wyrazDoDruku = [];
@@ -92,6 +101,14 @@ function wydrukuj() {
         }
     }
     miejsceNaTekst.innerHTML = wyrazDoDruku.join(' ');
+}
+function policzMozliweLitery() {
+    mozliweLitery = [];
+    for (let i = 0; i < wyraz.length; i++) {
+        if (!mozliweLitery.includes(wyraz[i])) {
+            mozliweLitery.push(wyraz[i]);
+        }
+    }
 }
 
 main();
@@ -105,12 +122,11 @@ main();
 
 
 Przycisk Reset:
-- losować nowy wyraz
-- zresetować wyświetlany wyraz
-- zresetować życia, podanych i zgadniętych liter - reset zmiennych globalnych
-- (dodanie komunikatu o restarcie)
-- odblokowanie możliwości zgadywania
+- losować nowy wyraz DONE
+- zresetować wyświetlany wyraz DONE
+- zresetować życia, podanych i zgadniętych liter - reset zmiennych globalnych DONE
+- (dodanie komunikatu o restarcie) DONE
+- odblokowanie możliwości zgadywania DONE
 
 Wynik Gracz vs komputer...
-
 */
