@@ -21,29 +21,18 @@ const przyciskReset = document.querySelector('#reset');
 const input = document.querySelector('#litera');
 const komunikat = document.querySelector('#komunikat');
 const obrazek = document.querySelector('img');
+
 przyciskOk.addEventListener('click', graj);
+przyciskReset.addEventListener('click', zresetuj);
 
 let uzyteLitery = [];
 let zgadnieteLitery = [];
 let mozliweLitery = [];
 let zycia = listaObrazkow.length;
-const wyraz = listaWyrazow[Math.floor(Math.random() * listaWyrazow.length)];
+let wyraz = listaWyrazow[Math.floor(Math.random() * listaWyrazow.length)];
 
 function main() {
-    for (let i = 0; i < wyraz.length; i++) {
-        if (!mozliweLitery.includes(wyraz[i])) {
-            mozliweLitery.push(wyraz[i]);
-        }
-    }
-    //console.log(mozliweLitery);
-    let wyrazDoDruku = [];
-    let czyTrafiony = false;
-    let liczbaSzans = listaObrazkow.length;
-
-    for (let i = 0; i < wyraz.length; i++) {
-        wyrazDoDruku[i] = '_';
-    }
-    miejsceNaTekst.innerHTML = wyrazDoDruku.join(' ');
+    wydrukuj();
 }
 
 function graj() {
@@ -59,12 +48,41 @@ function graj() {
         zgadnieteLitery.push(nowaLitera);
         komunikat.innerHTML = '';
     } else {
-        // Gracz popełnij błąd.
+        // Gracz popełnił błąd.
         komunikat.innerHTML = 'Ups! Tej litery nie ma w wyrazie.';
         zycia -= 1; // zycia = zycia - 1;
-    }
-    console.log(zycia);
+        obrazek.style.display = 'block';
+        if (zycia == 0) {
+            // Gracz przegrał.
+            let odpowiedzi = [
+                'Przegrałeś! Naciśnij "RESET" by zacząć od nowa.',
+                'Wygrałeś! Nie! Żartuje. Naciśnij "RESET" by zacząć od nowa.',
+            ];
 
+            komunikat.innerHTML =
+                odpowiedzi[Math.floor(Math.random() * odpowiedzi.length)];
+            przyciskOk.style.display = 'none';
+            // przyciskOk.disabled = true;
+        }
+        obrazek.src = listaObrazkow[zycia];
+    }
+
+    wydrukuj();
+
+    if (zgadnieteLitery.length == mozliweLitery.length) {
+        komunikat.innerHTML = 'Wygrałeś!';
+    }
+}
+
+function zresetuj() {
+    wyraz = listaWyrazow[Math.floor(Math.random() * listaWyrazow.length)];
+    obrazek.style.display = 'none';
+    uzyteLitery = [];
+    zgadnieteLitery = [];
+    mozliweLitery = [];
+    zycia = listaObrazkow.length;
+}
+function wydrukuj() {
     wyrazDoDruku = [];
     for (let i = 0; i < wyraz.length; i++) {
         if (zgadnieteLitery.includes(wyraz[i])) {
@@ -72,9 +90,6 @@ function graj() {
         } else {
             wyrazDoDruku[i] = '_';
         }
-    }
-    if (zgadnieteLitery.length == mozliweLitery.length) {
-        komunikat.innerHTML = 'Wygrałeś!';
     }
     miejsceNaTekst.innerHTML = wyrazDoDruku.join(' ');
 }
@@ -84,9 +99,9 @@ main();
 /*
 Życia:
 - gracz ma ograniczoną ilość żyć. (11) DONE
-- za każdym błędem gracza musimy mu odjąć jedno życie.
-- musimy gracza poinformować kiedy skończyły mu się życia.
-- musimy zablokować możliwość zgadywania dalej, jeżeli graczowi skończył się życia.
+- za każdym błędem gracza musimy mu odjąć jedno życie. DONE
+- musimy gracza poinformować kiedy skończyły mu się życia. DONE
+- musimy zablokować możliwość zgadywania dalej, jeżeli graczowi skończył się życia. DONE
 
 
 Przycisk Reset:
