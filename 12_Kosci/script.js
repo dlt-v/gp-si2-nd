@@ -30,14 +30,26 @@ function nowaGra() {
     document.querySelector('#nazwa-0').textContent = 'Gracz 1';
     document.querySelector('#nazwa-1').textContent = 'Gracz 2';
 
-    document.querySelector('.gracz-panel-0').classList.remove('zwyciestwo');
-    document.querySelector('.gracz-panel-0').classList.remove('aktywny');
+    document.querySelector('.gracz-0-panel').classList.remove('zwyciestwo');
+    document.querySelector('.gracz-0-panel').classList.remove('aktywny');
 
-    document.querySelector('.gracz-panel-1').classList.remove('zwyciestwo');
-    document.querySelector('.gracz-panel-1').classList.remove('aktywny');
-
-    /*
-    Dodaj klasę 'aktywny' do elementu gracz-panel-1
-    */
+    document.querySelector('.gracz-1-panel').classList.remove('zwyciestwo');
+    document.querySelector('.gracz-1-panel').classList.remove('aktywny');
 }
 nowaGra();
+
+document.querySelector('.btn-rzuc').addEventListener('click', rzuc);
+const koscObrazek = document.querySelector('.kosc');
+function rzuc() {
+    if (czyMoznaGrac) {
+        const liczbaOczek = Math.floor(Math.random() * 5) + 1;
+
+        koscObrazek.src = obrazki[liczbaOczek - 1];
+        koscObrazek.style.display = 'block';
+    }
+}
+/*
+1. Dodaj eventListener do przycisku rzuc-kostka i przypisz do niej funkcję.
+2. W funkcji sprawdź czy można grać (czyMoznaGrac)
+    3. Jeżeli prawda to wylosuj liczbę od 1-6
+*/
