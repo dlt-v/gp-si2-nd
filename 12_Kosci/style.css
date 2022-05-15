@@ -90,9 +90,9 @@ button:hover {
     font-weight: 600;
 }
 
-button:focus {
-    outline: none;
-}
+/* button:focus {
+     outline: none; 
+} */
 
 input {
     position: absolute;
@@ -121,6 +121,7 @@ input {
     transform: translateX(-50%);
     height: 200px;
     box-shadow: 20px 10px 50px 20px grey;
+    display: block;
 }
 
 .zwyciestwo {
@@ -129,14 +130,4 @@ input {
 .zwyciestwo .nazwa-gracza {
     font-weight: 300;
     color: #eb4d4d;
-}
-
-input {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100px;
-    height: 30px;
-    width: 230px;
-    font-family: 'Righteous', cursive;
 }
