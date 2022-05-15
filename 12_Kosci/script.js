@@ -23,5 +23,21 @@ function nowaGra() {
     // Reset danych
     // Elementy HTML
     document.querySelector('#wynik-0').textContent = '0';
+    document.querySelector('#wynik-1').textContent = '0';
+    document.querySelector('#aktualne-punkty-0').textContent = '0';
+    document.querySelector('#aktualne-punkty-1').textContent = '0';
+
+    document.querySelector('#nazwa-0').textContent = 'Gracz 1';
+    document.querySelector('#nazwa-1').textContent = 'Gracz 2';
+
+    document.querySelector('.gracz-panel-0').classList.remove('zwyciestwo');
+    document.querySelector('.gracz-panel-0').classList.remove('aktywny');
+
+    document.querySelector('.gracz-panel-1').classList.remove('zwyciestwo');
+    document.querySelector('.gracz-panel-1').classList.remove('aktywny');
+
+    /*
+    Dodaj klasę 'aktywny' do elementu gracz-panel-1
+    */
 }
 nowaGra();
