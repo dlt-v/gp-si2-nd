@@ -35,21 +35,45 @@ function nowaGra() {
 
     document.querySelector('.gracz-1-panel').classList.remove('zwyciestwo');
     document.querySelector('.gracz-1-panel').classList.remove('aktywny');
+
+    document.querySelector('.gracz-0-panel').classList.add('aktywny');
 }
 nowaGra();
 
 document.querySelector('.btn-rzuc').addEventListener('click', rzuc);
+
 const koscObrazek = document.querySelector('.kosc');
+
 function rzuc() {
     if (czyMoznaGrac) {
         const liczbaOczek = Math.floor(Math.random() * 5) + 1;
 
         koscObrazek.src = obrazki[liczbaOczek - 1];
         koscObrazek.style.display = 'block';
+
+        if (liczbaOczek != 1) {
+            punktyRundy += liczbaOczek;
+            document.querySelector(
+                `#aktualne-punkty-${aktualnyGracz}`
+            ).textContent = punktyRundy;
+        } else {
+            nastepnyGracz();
+        }
     }
 }
-/*
-1. Dodaj eventListener do przycisku rzuc-kostka i przypisz do niej funkcję.
-2. W funkcji sprawdź czy można grać (czyMoznaGrac)
-    3. Jeżeli prawda to wylosuj liczbę od 1-6
-*/
+
+function nastepnyGracz() {
+    // Zmień na następnego gracza
+    // Jeżeli pierwsze wyrażenie jest prawdziwe to wykonaj drugą instrukcję.
+    // Jeżeli jest fałszywe - wykonaj trzecią instrukcję.
+    aktualnyGracz ? (aktualnyGracz = 0) : (aktualnyGracz = 1);
+    punktyRundy = 0;
+
+    // toggle - jeżeli klasa jest dodana to usuń, jeżeli jej brakuje
+    // to ją dodaj.
+    document.querySelector('#aktualne-punkty-0').textContent = '0';
+    document.querySelector('#aktualne-punkty-1').textContent = '0';
+
+    document.querySelector('.gracz-0-panel').classList.toggle('aktywny');
+    document.querySelector('.gracz-1-panel').classList.toggle('aktywny');
+}
