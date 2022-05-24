@@ -21,6 +21,10 @@ let czyMoznaGrac = true;
 // Funkcja startowa
 function nowaGra() {
     // Reset danych
+    punkty = [0, 0];
+    punktyRundy = 0;
+    aktualnyGracz = 0;
+    czyMoznaGrac = true;
     // Elementy HTML
     document.querySelector('#wynik-0').textContent = '0';
     document.querySelector('#wynik-1').textContent = '0';
@@ -77,3 +81,29 @@ function nastepnyGracz() {
     document.querySelector('.gracz-0-panel').classList.toggle('aktywny');
     document.querySelector('.gracz-1-panel').classList.toggle('aktywny');
 }
+
+document
+    .querySelector('.btn-zatrzymaj')
+    .addEventListener('click', zatrzymajPunkty);
+
+function zatrzymajPunkty() {
+    punkty[aktualnyGracz] += punktyRundy;
+
+    document.querySelector(`#wynik-${aktualnyGracz}`).textContent =
+        punkty[aktualnyGracz];
+
+    if (punkty[aktualnyGracz] >= 100) {
+        czyMoznaGrac = false;
+        // 1. Zmień nazwę aktualnego gracza na "Zwycięzca"
+        document.querySelector(`#nazwa-${aktualnyGracz}`).textContent =
+            'Zwycięzca';
+        // 2. Dodaj klasę ".zwyciestwo" do panelu aktualnego gracza
+        document
+            .querySelector(`.gracz-${aktualnyGracz}-panel`)
+            .classList.add('zwyciestwo');
+    } else {
+        nastepnyGracz();
+    }
+}
+document.querySelector('.btn-nowa-gra').addEventListener('click', nowaGra);
+// Dodaj funkcjonalność przycisku "Nowa gra"
