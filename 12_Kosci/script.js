@@ -19,6 +19,7 @@ let aktualnyGracz = 0;
 let czyMoznaGrac = true;
 
 let punktyMax = 100;
+let poprzednialiczbaOczek = 0;
 
 document.querySelector('.btn-rzuc').addEventListener('click', () => {
     if (czyMoznaGrac) {
@@ -56,7 +57,6 @@ function nowaGra() {
     if (punktyMax != 0) {
         czyMoznaGrac = true;
     }
-    
 }
 nowaGra();
 
@@ -71,7 +71,12 @@ function rzuc() {
         koscObrazek.src = obrazki[liczbaOczek - 1];
         koscObrazek.style.display = 'block';
 
-        if (liczbaOczek != 1) {
+        if (liczbaOczek == 6 && poprzednialiczbaOczek == 6) {
+            punkty[aktualnyGracz] = 0;
+            document.querySelector(
+                `#aktualne-punkty-${aktualnyGracz}`
+            ).textContent = punktyRundy;
+        } else if (liczbaOczek != 1) {
             punktyRundy += liczbaOczek;
             document.querySelector(
                 `#aktualne-punkty-${aktualnyGracz}`
@@ -79,6 +84,7 @@ function rzuc() {
         } else {
             nastepnyGracz();
         }
+        poprzednialiczbaOczek = liczbaOczek;
     }
 }
 
@@ -108,7 +114,7 @@ function zatrzymajPunkty() {
     document.querySelector(`#wynik-${aktualnyGracz}`).textContent =
         punkty[aktualnyGracz];
 
-    if (punkty[aktualnyGracz] >= 10) {
+    if (punkty[aktualnyGracz] >= punktyMax) {
         czyMoznaGrac = false;
         // 1. Zmień nazwę aktualnego gracza na "Zwycięzca"
         document.querySelector(`#nazwa-${aktualnyGracz}`).textContent =
@@ -123,3 +129,10 @@ function zatrzymajPunkty() {
 }
 document.querySelector('.btn-nowa-gra').addEventListener('click', nowaGra);
 // Dodaj funkcjonalność przycisku "Nowa gra"
+
+/*
+1. Utwórz zmienną która zapisuje ostatni rzut gracza.
+2. Jeżeli jego poprzedni rzut i jego aktualny rzut mają wartość 6:
+    3. To wyzeruj punkty aktualnego gracza.
+
+*/
