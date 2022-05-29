@@ -18,6 +18,14 @@ let punktyRundy = 0;
 let aktualnyGracz = 0;
 let czyMoznaGrac = true;
 
+let punktyMax = 100;
+
+document.querySelector('.btn-rzuc').addEventListener('click', () => {
+    if (czyMoznaGrac) {
+        document.querySelector('.punkty-max').style.display = 'none';
+    }
+});
+
 // Funkcja startowa
 function nowaGra() {
     // Reset danych
@@ -41,6 +49,14 @@ function nowaGra() {
     document.querySelector('.gracz-1-panel').classList.remove('aktywny');
 
     document.querySelector('.gracz-0-panel').classList.add('aktywny');
+
+    document.querySelector('.punkty-max').style.display = 'block';
+    punktyMax = document.getElementById('wartosc').value;
+
+    if (punktyMax != 0) {
+        czyMoznaGrac = true;
+    }
+    
 }
 nowaGra();
 
@@ -92,7 +108,7 @@ function zatrzymajPunkty() {
     document.querySelector(`#wynik-${aktualnyGracz}`).textContent =
         punkty[aktualnyGracz];
 
-    if (punkty[aktualnyGracz] >= 100) {
+    if (punkty[aktualnyGracz] >= 10) {
         czyMoznaGrac = false;
         // 1. Zmień nazwę aktualnego gracza na "Zwycięzca"
         document.querySelector(`#nazwa-${aktualnyGracz}`).textContent =
